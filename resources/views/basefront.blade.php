@@ -151,14 +151,14 @@
                         </li>
                     </ul>
                 </li>
-                <li>
+                <li @class(['','active' => str_contains($routeName, 'demande.')])>
                     <a href="#"><i class="fa fa-shopping-cart fa-fw"></i> Demandes<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="#">Types de demandes existants</a>
+                            <a href="{{ route('demande.typeDemande.index') }}">Types de demandes existants</a>
                         </li>
                         <li>
-                            <a href="#">Faire une demande</a>
+                            <a href="{{ route('demande.liste_demande') }}">Mes demandes</a>
                         </li>
                     </ul>
                 </li>
@@ -190,7 +190,7 @@
 </div>
 <!-- /#wrapper -->
 <!-- Core Scripts - Include with every page -->
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="{{ asset('js/jquery-3.7.1.min.js') }}"></script>
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('js/plugins/metisMenu/jquery.metisMenu.js') }}"></script>
 <!-- Page-Level Plugin Scripts - Dashboard -->
@@ -206,7 +206,9 @@
 <script src="{{ asset('DataTables/datatables.min.js')}}"></script>
 <script>
     $(document).ready(function() {
-        $('#dataTables-example').DataTable();
+        $('#dataTables-example').DataTable({
+            autoWidth: false
+        });
         $('.sidebar-collapse').show();
     });
 </script>

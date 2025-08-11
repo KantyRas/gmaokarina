@@ -5,7 +5,9 @@ use App\Http\Controllers\admin\DepartementController;
 use App\Http\Controllers\admin\EmployeController;
 use App\Http\Controllers\admin\EquipementController;
 use App\Http\Controllers\admin\RoleController;
+use App\Http\Controllers\admin\TypeDemandeController;
 use App\Http\Controllers\admin\UserController;
+use App\Http\Controllers\page\DemandeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,3 +35,10 @@ Route::prefix('admin')->name('admin.entreprise.')->group(function () {
     Route::resource('departement',DepartementController::class)->except(['show']);
     Route::resource('equipement',EquipementController::class)->except(['show']);
 });
+/* Demandes stocks (achats/sorties) */
+Route::prefix('demandes')->name('demande.')->group(function () {
+    Route::resource('typeDemande',TypeDemandeController::class)->except(['show']);
+    Route::get('/', [DemandeController::class, 'index'])->name('liste_demande');
+    Route::get('/create', [DemandeController::class, 'create'])->name('create_demande');
+});
+

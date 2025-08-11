@@ -71,8 +71,8 @@ create table demandes(
     idReceveur int references users(idUser),    -- receveur (achat -> responsable achat & sortie -> responsable magasin) --
     idTypeDemande int references type_demandes(idTypeDemande),
     dateDemande date,
-    commentaire text,
-    statut int default 0  -- statut:0 = En cours / statut:1 = Reçu / statut:2 = Annulé --
+    description text,
+    statut int default 0  -- statut:0 = En attente / statut:1 = Reçu na validé / statut:2 = Rejeté --
 );
 create table detail_article_demandes(
     idArticleDemande serial primary key,
@@ -92,7 +92,7 @@ create table demande_interventions(  -- demande en cours --
     idEquipement int references equipements(idEquipement),
     dateDemande timestamp default current_time,
     description text,
-    statut int default 0  -- (0=en attente, 1=validé par le dept_maintenance, 2=en cours, 3=terminé)
+    statut int default 0  -- (0=en attente, 1=validé par le dept_maintenance, 3=rejetté)
 );
 create table fiche_interventions(
     idFicheIntervention serial primary key,
