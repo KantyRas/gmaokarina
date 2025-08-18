@@ -11,7 +11,11 @@
         ['idArticle' => 1, 'code' => 'ART001', 'designation' => 'Article 1', 'idUnite' => 1],
         ['idArticle' => 2, 'code' => 'ART002', 'designation' => 'Article 2', 'idUnite' => 2]
     ];
- @endphp
+    foreach ($articles as $article) {
+        $unite = collect($unites)->firstWhere('idUnite', $article['idUnite']);
+        $article['idUnite'] = $unite ? $unite['unite'] : '';
+    }
+@endphp
     <div class="container">
         <h2 class="mb-4">Bon de Demande d'Achat</h2>
     <br>
@@ -32,7 +36,7 @@
             <table class="table table-bordered align-middle" id="articlesTable">
                 <thead class="table-light">
                 <tr>
-                    <th style="width: 5%">ID</th>
+                    <th style="width: 5%">Item</th>
                     <th style="width: 20%">Code Article</th>
                     <th style="width: 40%">Désignation</th>
                     <th style="width: 10%">Quantité</th>
@@ -64,7 +68,7 @@
             </table>
 
             <div class="d-flex justify-content-end align-items-center mb-4">
-                <button type="button" id="addRow" class="btn btn-primary me-3">
+                <button type="button" id="ajouterLigne" class="btn btn-primary me-3">
                     <i class="fa fa-plus"></i> Ajouter un article
                 </button>
                 <button type="submit" class="btn btn-success">
@@ -76,25 +80,23 @@
     </div>
 
     <script>
-        const articlesData = @json($articles);
-        let rowIndex = 1;
-        function updateRowIndices() {
+        const listeArticles = @json($articles);
+        let indiceLigne = 1;
+        function mettreAJourIndices() {
             document.querySelectorAll('#articlesTable tbody tr').forEach((tr, i) => {
                 tr.querySelector('td:first-child').textContent = i + 1;
-                // Update name attributes for all inputs/selects
                 tr.querySelectorAll('select, input').forEach(input => {
                     let name = input.name;
                     if(name) {
-                        // Replace the index in name: articles[index][field]
                         input.name = name.replace(/\d+/, i);
                     }
                 });
             });
         }
-        function onCodeArticleChange(select) {
+        function changementCodeArticle(select) {
             const idArticle = select.value;
             const tr = select.closest('tr');
-            const article = articlesData.find(a => a.idArticle == idArticle);
+            const article = listeArticles.find(a => a.idArticle == idArticle);
             if(article) {
                 tr.querySelector('.designation').value = article.designation;
                 tr.querySelector('.unite').value = article.idUnite;
@@ -103,24 +105,24 @@
                 tr.querySelector('.unite').value = '';
             }
         }
-        document.getElementById('addRow').addEventListener('click', function() {
+        document.getElementById('ajouterLigne').addEventListener('click', function() {
             const tableBody = document.querySelector('#articlesTable tbody');
             const newRow = document.createElement('tr');
 
             let optionsHtml = `<option value="">-- Choisir --</option>`;
-            articlesData.forEach(a => {
+            listeArticles.forEach(a => {
                 optionsHtml += `<option value="${a.idArticle}">${a.code}</option>`;
             });
             newRow.innerHTML = `
             <td>${tableBody.children.length + 1}</td>
             <td>
-                <select name="articles[${rowIndex}][idArticle]" class="form-control code-article-select" required>
+                <select name="articles[${indiceLigne}][idArticle]" class="form-control code-article-select" required>
                     ${optionsHtml}
                 </select>
             </td>
-            <td><input type="text" name="articles[${rowIndex}][designation]" class="form-control designation" readonly></td>
-            <td><input type="number" name="articles[${rowIndex}][quantite]" class="form-control" min="1" value="1" required></td>
-            <td><input type="text" name="articles[${rowIndex}][idUnite]" class="form-control unite" readonly></td>
+            <td><input type="text" name="articles[${indiceLigne}][designation]" class="form-control designation" readonly></td>
+            <td><input type="number" name="articles[${indiceLigne}][quantite]" class="form-control" min="1" value="1" required></td>
+            <td><input type="text" name="articles[${indiceLigne}][idUnite]" class="form-control unite" readonly></td>
             <td class="text-center">
                 <button type="button" class="btn btn-danger btn-sm removeRow">
                     <i class="fa fa-trash-o"></i>
@@ -128,12 +130,12 @@
             </td>
         `;
             tableBody.appendChild(newRow);
-            rowIndex++;
-            updateRowIndices();
+            indiceLigne++;
+            mettreAJourIndices();
         });
         document.querySelector('#articlesTable').addEventListener('change', function(e) {
             if(e.target.classList.contains('code-article-select')) {
-                onCodeArticleChange(e.target);
+                changementCodeArticle(e.target);
             }
         });
         document.querySelector('#articlesTable').addEventListener('click', function(e) {
@@ -141,13 +143,13 @@
                 const rows = document.querySelectorAll('#articlesTable tbody tr');
                 if(rows.length > 1) {
                     e.target.closest('tr').remove();
-                    updateRowIndices();
+                    mettreAJourIndices();
                 }
             }
         });
         // Au chargement de la page, on bind déjà les selects
         document.querySelectorAll('.code-article-select').forEach(select => {
-            select.addEventListener('change', () => onCodeArticleChange(select));
+            select.addEventListener('change', () => changementCodeArticle(select));
         });
     </script>
 @endsection

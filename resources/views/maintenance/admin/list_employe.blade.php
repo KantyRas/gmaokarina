@@ -24,7 +24,6 @@
                                 <th>Nom & Prénoms</th>
                                 <th>Email</th>
                                 <th>Télephone</th>
-                                <th>Département</th>
                                 <th>Fonction</th>
                                 <th>Actions</th>
                             </tr>
@@ -35,7 +34,6 @@
                                     <td>RASOLOFOMANANA Tanjoniaina Kanty</td>
                                     <td>rasolofomananakanty@gmail.com</td>
                                     <td>+261 34 87 645 40</td>
-                                    <td>Maintenance</td>
                                     <td>Développeur</td>
                                     <td class="text-center">
                                         <a href="#"

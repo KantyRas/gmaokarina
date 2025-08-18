@@ -120,34 +120,25 @@
                         </li>
                     </ul>
                 </li>
-                <li @class(['','active' => str_contains($routeName, 'admin.entreprise.')])>
+                <li @class(['','active' => str_contains($routeName, 'carnet.')])>
                     <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Entreprises<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="{{ route('admin.entreprise.batiment.index') }}">Bâtiments</a>
+                            <a href="{{ route('carnet.liste_carnet') }}">Tâches (Carnets)</a>
                         </li>
                         <li>
-                            <a href="{{ route('admin.entreprise.departement.index') }}">Départements</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('admin.entreprise.equipement.index') }}">Équipements</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-archive fa-fw"></i> Articles & Stocks<span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a href="#">Articles</a>
-                        </li>
-                        <li>
-                            <a href="#">Dépôts</a>
-                        </li>
-                        <li>
-                            <a href="#">Familles</a>
-                        </li>
-                        <li>
-                            <a href="#">Unités</a>
+                        <a href="#">Gestions<span class="fa arrow"></span></a>
+                        <ul class="nav nav-third-level">
+                            <li>
+                                <a href="{{ route('carnet.fonction.index') }}">Fonctions</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('carnet.emplacement.index') }}">Emplacements</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('carnet.equipement.index') }}">Équipements</a>
+                            </li>
+                        </ul>
                         </li>
                     </ul>
                 </li>
@@ -170,6 +161,23 @@
                         </li>
                         <li>
                             <a href="#">Demander une intervention</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-archive fa-fw"></i> Articles & Stocks<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="#">Articles</a>
+                        </li>
+                        <li>
+                            <a href="#">Dépôts</a>
+                        </li>
+                        <li>
+                            <a href="#">Familles</a>
+                        </li>
+                        <li>
+                            <a href="#">Unités</a>
                         </li>
                     </ul>
                 </li>

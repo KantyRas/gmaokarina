@@ -33,13 +33,12 @@
                             </thead>
 
                             <tbody>
-                            @foreach($demandes as $demande)
                                 <tr class="odd gradeX">
-                                    <td>{{ $demande['idDemande'] }}</td>
-                                    <td>{{ $demande['description'] }}</td>
-                                    <td>{{ $demande['idTypeDemande'] }}</td>
-                                    <td>{{ $demande['dateDemande'] }}</td>
-                                    <td>@include('shared.status', ['status' => $demande['statut']])</td>
+                                    <td>1</td>
+                                    <td>Petite description</td>
+                                    <td>Achat</td>
+                                    <td>{{ date('Y-m-d') }}</td>
+                                    <td>@include('shared.status', ['status' => 0])</td>
                                     <td class="text-center">
                                         <a href="#"
                                            class="btn btn-primary btn-circle"
@@ -62,7 +61,6 @@
                                         </form>
                                     </td>
                                 </tr>
-                            @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -70,8 +68,8 @@
             </div>
         </div>
     </div>
-    <div class="text-right">
-        {{ $demandes->links() }}
-    </div>
+{{--    <div class="text-right">--}}
+{{--        {{ $demandes->links() }}--}}
+{{--    </div>--}}
     <script src="{{ asset('js/table-utils.js') }}"></script>
 @endsection

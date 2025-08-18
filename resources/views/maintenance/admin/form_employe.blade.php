@@ -5,7 +5,7 @@
         <h1 class="page-header">Employés</h1>
     </div>
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-6 col-lg-offset-3">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     Formulaires Ajouts Employés
@@ -14,7 +14,7 @@
                     <div class="row">
                         <form action="#">
                             @csrf
-                            <div class="col-lg-6">
+                            <div class="col-lg-12">
                                 <div class="form-group">
                                     <label>Nom</label>
                                     <input class="form-control" placeholder="Entrez le nom">
@@ -34,12 +34,6 @@
                                 <div class="form-group input-group">
                                     <span class="input-group-addon">+261</span>
                                     <input type="tel" class="form-control" placeholder="ex: 348945621">
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="form-group">
-                                    <label>Département</label>
-                                    <input type="text" class="form-control" placeholder="Nom département">
                                 </div>
                                 <div class="form-group">
                                     <label>Fonction</label>

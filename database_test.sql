@@ -1,17 +1,20 @@
 -- Admin gestion utilisateur/personnel --
+create table roles(
+    idRole serial primary key,
+    role varchar(75)
+);
+create table fonctions(
+    idFonction serial primary key,
+    fonction varchar(255)
+);
 create table employes(
     idEmploye serial primary key,
     nom varchar(75),
     prenom varchar(75),
     matricule varchar(10) unique,
-    fonction varchar(75),
+    idFonction int references fonctions(idFonction),
     email varchar(75) unique,
-    telephone varchar(10),
-    departement varchar(75) default 'Maintenance'
-);
-create table roles(
-    idRole serial primary key,
-    role varchar(75)
+    telephone varchar(10)
 );
 create table users(
     idUser serial primary key,
@@ -20,16 +23,80 @@ create table users(
     password varchar(255) not null,
     role int references roles(idRole)
 );
--- Super admin gestion entreprise --
-create table batiments(
-    idBatiment serial primary key,
-    nom varchar(75)
+create table emplacements(
+    idEmplacement serial primary key,
+    emplacement varchar(75)
 );
-create table departements(
-    idDepartement serial primary key,
-    idBatiment int references batiments(idBatiment),
-    nom varchar(75)
+create table frequences(
+    idFrequence serial primary key,
+    frequence varchar(75)
 );
+-- 1 carnet = 1 tâche dans la departement maintenance (ex: Verification machine, reparation filtres, suivie compresseur, relevé consommation electricité)
+-- 1 tâche est localisé par des emplacements définis à l'avance pour que les employés les effectuent sans problème
+-- 1 tâche est executé par un ou plusieurs employé
+-- La tâche est executée par les employés selon sa fréquence definit à l'avance (Journalière,Hebdomadaire,Mensuel,Tous les 2 semaines,A la demande)
+-- 1 carnet ou 1 tâche est lié à une fiche qui est deja définie à l'avance (le nom,le type et ses paramètres à verifier)
+-- En ce moment il y a 3 types de fiche (Relevé, checklist, point de contrôle)
+-- Ses fiches sont remplies par les employés responsables de leur tâche selon la frequence de suivie definit dans le carnet
+
+create table carnets(
+    idCarnet serial primary key,
+    item varchar(255),
+    idFrequence int references frequences(idFrequence)
+);
+create table carnet_emplacements(
+    idCarnet int references carnets(idCarnet),
+    idEmplacement int references emplacements(idEmplacement)
+);
+create table carnet_employes(
+    idCarnet int references carnets(idCarnet),
+    idEmploye int references employes(idEmploye)
+);
+CREATE TABLE fiches(
+    idFiche SERIAL PRIMARY KEY,
+    idCarnet INT REFERENCES carnets(idCarnet),
+    idUser int references users(idUser),
+    nomFiche VARCHAR(100) NOT NULL,
+    parametres text[] not null,
+    date_creation timestamp default current_timestamp,
+    date_dernier_maj timestamp default current_timestamp,
+    statut int default 0 -- En cours / Cloturée
+);
+create table fiche_details(
+    idFicheDetail serial primary key,
+    idFiche int references fiches(idFiche),
+    idEmploye int references employes(idEmploye),
+    dateAjout timestamp default current_timestamp,
+    parametres text,
+    valeurs varchar(255)
+);
+-- vue --
+CREATE VIEW vue_carnets AS
+SELECT
+    c.idCarnet,
+    c.item,
+    e.idEmplacement,
+    e.emplacement,
+    emp.nom AS nom_employe,
+    emp.prenom AS prenom_employe,
+    emp.matricule,
+    fs.fonction,
+    f.frequence
+FROM carnets c
+         JOIN frequences f
+              ON c.idFrequence = f.idFrequence
+         LEFT JOIN carnet_emplacement ce
+                   ON c.idCarnet = ce.idCarnet
+         LEFT JOIN emplacements e
+                   ON ce.idEmplacement = e.idEmplacement
+         LEFT JOIN carnet_employe cem
+                   ON c.idCarnet = cem.idCarnet
+         LEFT JOIN employes emp
+                   ON cem.idEmploye = emp.idEmploye
+         LEFT JOIN fonctions fs
+                             ON emp.idFontion = fs.idFonction;
+
+
 create table equipements(
     idEquipement serial primary key,
     code varchar(50),
@@ -37,7 +104,6 @@ create table equipements(
     idDepartement int references departements(idDepartement),
     date_mise_service date
 );
-
 -- Gestion articles --
 create table depots(
     idDepot serial primary key,
