@@ -126,7 +126,7 @@
                         <li>
                             <a href="{{ route('carnet.liste_carnet') }}">Tâches (Carnets)</a>
                         </li>
-                        <li>
+                        <li @class(['','active' => str_contains($routeName, 'carnet.')])>
                         <a href="#">Gestions<span class="fa arrow"></span></a>
                         <ul class="nav nav-third-level">
                             <li>

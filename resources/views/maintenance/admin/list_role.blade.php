@@ -61,7 +61,7 @@
                                     <label>Nom rôle</label>
                                     <input class="form-control" placeholder="...">
                                 </div>
-                                <button type="submit" class="btn btn-outline btn-success" style="width:200px;">Validez</button>
+                                <button type="submit" class="btn btn-success" style="width:200px;">Validez</button>
                             </form>
                         </div>
                     </div>

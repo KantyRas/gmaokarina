@@ -10,6 +10,9 @@ class CarnetController extends Controller
     public function index(){
         return view('page.list_carnet');
     }
+    public function create(){
+        return view('page.ajout_carnet');
+    }
 
     public function fiche_index(){
         return view('page.fiche_carnet');

@@ -41,7 +41,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-12">
-                                <button type="submit" class="btn btn-outline btn-success" style="width:200px;">Validez</button>
+                                <button type="submit" class="btn btn-success" style="width:200px;">Validez</button>
                             </div>
                         </form>
                     </div>

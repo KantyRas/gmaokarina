@@ -2,13 +2,13 @@
 @section('title','Ajout Utilisateur')
 @section('content')
     <div class="col-lg-12">
-        <h1 class="page-header">Nouveau utilisateur</h1>
+        <h1 class="page-header">Ajout nouveau carnet</h1>
     </div>
     <div class="row">
         <div class="col-lg-6 col-lg-offset-3">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Formulaires Ajouts Utilisateurs
+                    Formulaires Ajouts
                 </div>
                 <div class="panel-body">
                     <div class="row">
@@ -16,29 +16,30 @@
                             <form action="#">
                                 @csrf
                                 <div class="form-group">
-                                    <label>Email</label>
-                                    <input type="email" class="form-control">
+                                    <label>Item</label>
+                                    <input type="text" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label>Mot de passe</label>
-                                    <input type="password" class="form-control">
+                                    <label>Frequence de suivie</label>
+                                    <input type="text" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label>nº Matricule</label>
+                                    <label>Emplacement</label>
                                     <select class="form-control">
-                                        <option>6906</option>
-                                        <option>6907</option>
-                                        <option>6908</option>
+                                        <option>BAT A</option>
+                                        <option>BAT B</option>
+                                        <option>BAT C</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label>Rôle</label>
+                                    <label>Employé Responsable</label>
                                     <select class="form-control">
-                                        <option value="1">Super admin</option>
-                                        <option value="2">Admin</option>
-                                        <option value="3">Simple utilisateur</option>
+                                        <option value="1">Emp 1</option>
+                                        <option value="2">Emp 2</option>
+                                        <option value="3">Emp 3</option>
                                     </select>
                                 </div>
+                                <button type="submit" class="btn btn-primary" style="width:200px;">Créer modèle fiche</button>
                                 <button type="submit" class="btn btn-success" style="width:200px;">Validez</button>
                             </form>
                         </div>

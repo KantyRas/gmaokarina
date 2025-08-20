@@ -41,6 +41,7 @@ Route::prefix('demandes')->name('demande.')->group(function () {
 });
 Route::prefix('carnets')->name('carnet.')->group(function () {
     Route::get('/',[CarnetController::class,'index'])->name('liste_carnet');
+    Route::get('/create',[CarnetController::class,'create'])->name('create_carnet');
     Route::get('/fiche/historique',[CarnetController::class,'fiche_index'])->name('fiche_carnet');
     Route::get('/fiche/saisie',[CarnetController::class,'fiche_create'])->name('fiche_saisie');;
     Route::resource('fonction',FonctionController::class)->except(['show']);
