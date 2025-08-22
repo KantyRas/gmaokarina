@@ -64,7 +64,6 @@ CREATE TABLE fiches(
 create table fiche_parametres(
     idFicheParametre serial primary key,
     idFiche int references fiches(idFiche),
-    idEmplacement int references emplacements(idEmplacement),
     parametres varchar(255)
 );
 create table fiche_details(

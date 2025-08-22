@@ -1,7 +1,7 @@
 @extends('basefront')
 @section('content')
     <div class="col-lg-12">
-        <h1 class="page-header">Tous les carnets d'enregistrments</h1>
+        <h1 class="page-header">Tous les carnets d'enregistrements</h1>
         <div class="text-right" style="margin-bottom:15px;">
             <a href="{{ route('carnet.create_carnet') }}" class="btn btn-primary">
                 <i class="fa fa-plus"></i> Nouveau carnet

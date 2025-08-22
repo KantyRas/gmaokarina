@@ -24,10 +24,10 @@
                             </thead>
                             <tbody>
                             <tr>
-                                <td>Août 2025</td>
-                                <td>01/08/2025</td>
-                                <td>13/08/2025</td>
-                                <td>En cours</td>
+                                <td>Juillet 2025</td>
+                                <td>01/07/2025</td>
+                                <td>31/07/2025</td>
+                                <td>Clôturée</td>
                                 <td>
                                     <a href="{{ route('carnet.fiche_saisie') }}"
                                        class="btn btn-primary btn-sm">
@@ -36,10 +36,10 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>Juillet 2025</td>
-                                <td>01/07/2025</td>
-                                <td>31/07/2025</td>
-                                <td>Clôturée</td>
+                                <td>Août 2025</td>
+                                <td>01/08/2025</td>
+                                <td>13/08/2025</td>
+                                <td>En cours</td>
                                 <td>
                                     <a href="{{ route('carnet.fiche_saisie') }}"
                                        class="btn btn-primary btn-sm">

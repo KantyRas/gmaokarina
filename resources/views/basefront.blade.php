@@ -4,15 +4,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Home')</title>
-    <!-- Core CSS - Include with every page -->
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('font-awesome/css/font-awesome.css') }}" rel="stylesheet">
-    <!-- SB Admin CSS - Include with every page -->
     <link href="{{ asset('css/sb-admin.css') }}" rel="stylesheet">
-    <!-- Page-Level Plugin CSS - Dashboard -->
     <link href="{{ asset('css/plugins/morris/morris-0.4.3.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/plugins/timeline/timeline.css') }}" rel="stylesheet">
-    <!-- Page-Level Plugin CSS - Tables -->
     <link href="{{ asset('css/plugins/dataTables/dataTables.bootstrap.css') }}" rel="stylesheet">
     <link href="{{ asset('DataTables/datatables.min.css') }}" rel="stylesheet">
     <style>
@@ -197,18 +193,13 @@
     <!-- /#page-wrapper -->
 </div>
 <!-- /#wrapper -->
-<!-- Core Scripts - Include with every page -->
 <script src="{{ asset('js/jquery-3.7.1.min.js') }}"></script>
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('js/plugins/metisMenu/jquery.metisMenu.js') }}"></script>
-<!-- Page-Level Plugin Scripts - Dashboard -->
 <script src="{{ asset('js/plugins/morris/raphael-2.1.0.min.js') }}"></script>
 <script src="{{ asset('js/plugins/morris/morris.js') }}"></script>
-<!-- SB Admin Scripts - Include with every page -->
 <script src="{{ asset('js/sb-admin.js') }}"></script>
-<!-- Page-Level Demo Scripts - Dashboard - Use for reference -->
 <script src="{{ asset('js/demo/dashboard-demo.js') }}"></script>
-<!-- Page-Level Plugin Scripts - Tables -->
 <script src="{{ asset('js/plugins/dataTables/jquery.dataTables.js')}}"></script>
 <script src="{{ asset('js/plugins/dataTables/dataTables.bootstrap.js')}}"></script>
 <script src="{{ asset('DataTables/datatables.min.js')}}"></script>
